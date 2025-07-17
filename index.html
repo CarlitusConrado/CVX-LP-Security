@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introdução à Segurança Cibernética - Ebook Gratuito</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #2d2d5f 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 170px;   /* ajuste o valor conforme desejar */
+    height: auto;
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 255, 136, 0.1);
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .security-icon {
+            width: 16px;
+            height: 16px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 255, 136, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(0,212,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(10px, 10px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00d4ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .feature-icon {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(45deg, #00d4ff, #00ff88);
+            border-radius: 50%;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            align-items: center;
+            padding: 0px 0;
+        }
+
+        .content-left {
+            padding-right: 40px;
+        }
+
+        .ebook-preview {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .ebook-cover {
+            width: 300px;
+            height: 400px;
+            background-image: url('img/mockup-e-book.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 15px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+            transition: transform 0.3s ease;
+        }
+
+        .ebook-cover:hover {
+            transform: rotateY(10deg) rotateX(5deg);
+        }
+
+        .ebook-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            
+            border-radius: 15px;
+        }
+
+        
+
+        
+
+        .what-you-learn {
+            margin-bottom: 40px;
+        }
+
+        .what-you-learn h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #00d4ff;
+        }
+
+        .learn-list {
+            list-style: none;
+            space-y: 15px;
+        }
+
+        .learn-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .learn-item:hover {
+            transform: translateX(10px);
+            color: #00ff88;
+        }
+
+        .learn-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(45deg, #00d4ff, #00ff88);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .learn-icon::after {
+            content: '✓';
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            animation: rotate 8s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .form-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-title {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #00d4ff;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            color: #b0b0b0;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #e0e0e0;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .form-input::placeholder {
+            color: #888;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, #00d4ff, #00ff88);
+            border: none;
+            border-radius: 10px;
+            color: #0f0f23;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 212, 255, 0.4);
+        }
+
+        .security-note {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            text-align: center;
+            font-size: 14px;
+            color: #00ff88;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+                text-align: center;
+            }
+
+            .content-left {
+                padding-right: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .ebook-cover {
+                width: 250px;
+                height: 350px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .form-section {
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .ebook-preview {
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo"><img src="img/LOGO CONVEX.svg" alt=""></div>
+                <div class="security-badge">
+                    <div class="security-icon"></div>
+                    <span>100% Seguro</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Domine a Segurança Cibernética</h1>
+                <p class="hero-subtitle">
+                    Aprenda os fundamentos essenciais para proteger seus dados e sistemas contra ameaças digitais
+                </p>
+                <div class="hero-features">
+                    <div class="feature-item">
+                        <div class="feature-icon"></div>
+                        <span>Conteúdo Atualizado</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"></div>
+                        <span>Guia Prático</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"></div>
+                        <span>100% Gratuito</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="main-content">
+            <div class="content-left">
+                <div class="ebook-preview">
+                    <div class="ebook-cover">
+                        <div class="ebook-icon"></div>
+                        <h3 class="ebook-title"></h3>
+                    </div>
+                </div>
+
+                <div class="what-you-learn">
+                    <h2>O que você vai aprender:</h2>
+                    <ul class="learn-list">
+                        <li class="learn-item">
+                            <div class="learn-icon"></div>
+                            <span>Fundamentos da segurança digital</span>
+                        </li>
+                        <li class="learn-item">
+                            <div class="learn-icon"></div>
+                            <span>Como identificar ameaças comuns</span>
+                        </li>
+                        <li class="learn-item">
+                            <div class="learn-icon"></div>
+                            <span>Técnicas de proteção de dados</span>
+                        </li>
+                        <li class="learn-item">
+                            <div class="learn-icon"></div>
+                            <span>Melhores práticas de senhas</span>
+                        </li>
+                        <li class="learn-item">
+                            <div class="learn-icon"></div>
+                            <span>Prevenção contra malware</span>
+                        </li>
+                        <li class="learn-item">
+                            <div class="learn-icon"></div>
+                            <span>Navegação segura na web</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-content">
+                    <h2 class="form-title">Baixe Agora Gratuitamente</h2>
+                    <p class="form-subtitle">
+                        Preencha os dados abaixo e receba o ebook instantaneamente no seu e-mail
+                    </p>
+                    
+                    <form id="ebookForm">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Nome Completo</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Seu nome completo" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="seu@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="profession" class="form-label">Área de Atuação</label>
+                            <input type="text" id="profession" name="profession" class="form-input" placeholder="Ex: Desenvolvedor, Analista, Estudante" required>
+                        </div>
+                        
+                        <button type="submit" class="cta-button">
+                            Baixar Ebook Gratuito
+                        </button>
+                    </form>
+                    
+                    <div class="security-note">
+                        🔒 Seus dados estão protegidos. Não compartilhamos informações pessoais.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('ebookForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulação de envio do formulário
+            const button = document.querySelector('.cta-button');
+            const originalText = button.textContent;
+            
+            button.textContent = 'Enviando...';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.textContent = 'Ebook Enviado! ✓';
+                button.style.background = 'linear-gradient(45deg, #00ff88, #00d4ff)';
+                
+                // Simular redirecionamento ou mensagem de sucesso
+                setTimeout(() => {
+                    alert('Ebook enviado com sucesso para seu e-mail! Verifique sua caixa de entrada.');
+                    button.textContent = originalText;
+                    button.disabled = false;
+                    button.style.background = 'linear-gradient(45deg, #00d4ff, #00ff88)';
+                    document.getElementById('ebookForm').reset();
+                }, 2000);
+            }, 2000);
+        });
+
+        // Animações de scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.learn-item');
+            
+            elements.forEach((element, index) => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.style.animation = `fadeInUp 0.6s ease-out ${index * 0.1}s both`;
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
